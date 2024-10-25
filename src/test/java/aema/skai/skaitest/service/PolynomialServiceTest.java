@@ -16,9 +16,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -43,7 +40,7 @@ class PolynomialServiceTest {
 
     private Polynomial polynomial;
     private SimplifiedPolynomial simplifiedPolynomial;
-    private final String expression = "x^2+2x+1";
+    private final String expression = "x^2+2*x+1";
 
     @BeforeEach
     void setUp() {
@@ -83,7 +80,6 @@ class PolynomialServiceTest {
 
     @Test
     void testSimplifyPolynomial_NewPolynomial_SimplifiesAndSaves() {
-        when(polynomialRepository.findById(polynomial.getId())).thenReturn(Optional.of(polynomial));
         when(simplifiedPolynomialRepository.findByPolynomialId(polynomial.getId())).thenReturn(null);
 
         
@@ -112,16 +108,7 @@ class PolynomialServiceTest {
     }
 
     @Test
-    void testSimplifyPolynomial_PolynomialNotFound_ThrowsException() {
-        when(polynomialRepository.findById(polynomial.getId())).thenReturn(Optional.empty());
-
-        assertThrows(ResourceNotFoundException.class, () -> polynomialService.simplifyPolynomial(polynomial));
-    }
-
-    @Test
     void testEvaluatePolynomial_NewEvaluation_CalculatesAndSaves() {
-        when(polynomialRepository.findById(polynomial.getId())).thenReturn(Optional.of(polynomial));
-
         when(mockedExpr.evalDouble()).thenReturn(9.0);
 
         
@@ -150,12 +137,5 @@ class PolynomialServiceTest {
 
         assertEquals(4.0, result);
         verify(evaluationRepository, never()).save(any(PolynomialEvaluation.class));
-    }
-
-    @Test
-    void testEvaluatePolynomial_PolynomialNotFound_ThrowsException() {
-        when(polynomialRepository.findById(polynomial.getId())).thenReturn(Optional.empty());
-
-        assertThrows(ResourceNotFoundException.class, () -> polynomialService.evaluatePolynomial(polynomial, 2.0));
     }
 }

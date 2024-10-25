@@ -1,7 +1,6 @@
 package aema.skai.skaitest.service;
 
 import aema.skai.skaitest.entity.Polynomial;
-import aema.skai.skaitest.entity.PolynomialEvaluation;
 import aema.skai.skaitest.entity.SimplifiedPolynomial;
 import aema.skai.skaitest.repository.PolynomialEvaluationRepository;
 import aema.skai.skaitest.repository.PolynomialRepository;
@@ -9,7 +8,6 @@ import aema.skai.skaitest.repository.SimplifiedPolynomialRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
