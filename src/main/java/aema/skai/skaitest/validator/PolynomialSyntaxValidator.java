@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class PolynomialSyntaxValidator implements PolynomialValidator {
     @Override
-    public void validate(Polynomial polynomial) throws InvalidPolynomialException {
-        String polynomialPattern = "^([+-]?\\d+(\\*x(\\^\\d+)?)?|x(\\^\\d+)?)([+-]\\d+(\\*x(\\^\\d+)?)?|[+-]x(\\^\\d+)?)*([+-]\\d+)?$";
-
+    public void validate(final Polynomial polynomial) throws InvalidPolynomialException {
+        String polynomialPattern =
+                "^([+-]?\\d+(\\*x(\\^\\d+)?)?|x(\\^\\d+)?)([+-]\\d+(\\*x(\\^\\d+)?)?|[+-]x(\\^\\d+)?)*([+-]\\d+)?$";
         String trimmedExpression = polynomial.getExpression().replaceAll("\\s+", "");
 
         if (!trimmedExpression.matches(polynomialPattern)) {
