@@ -12,7 +12,6 @@ import org.matheclipse.core.eval.EvalEngine;
 import org.matheclipse.core.eval.EvalUtilities;
 import org.matheclipse.core.interfaces.IExpr;
 import org.springframework.stereotype.Service;
-
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
